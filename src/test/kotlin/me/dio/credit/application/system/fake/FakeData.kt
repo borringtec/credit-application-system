@@ -57,7 +57,11 @@ class FakeData {
         lastName: String = this.generateRandomString(Random.nextInt(1, 255)),
         cpf: String = this.generateRandomCpf(),
         email: String = this.generateRandomEmail(Random.nextInt(1, 50)) + "@mail.org",
-        income: BigDecimal = BigDecimal(Random.nextDouble()),
+        income: BigDecimal = BigDecimal(
+            Random.nextDouble(100.0, 100000.0)
+        ).setScale(
+            2, BigDecimal.ROUND_HALF_UP
+        ),
         password: String = this.generateRandomString(Random.nextInt(1, 255)),
         zipCode: String = this.generateRandomString(Random.nextInt(1, 255)),
         street: String = this.generateRandomString(Random.nextInt(1, 255))
@@ -75,7 +79,11 @@ class FakeData {
     public fun builderCustomerUpdateDto(
         firstName: String = this.generateRandomString(Random.nextInt(1, 255)),
         lastName: String = this.generateRandomString(Random.nextInt(1, 255)),
-        income: BigDecimal = BigDecimal(Random.nextDouble()),
+        income: BigDecimal = BigDecimal(
+            Random.nextDouble(100.0, 100000.0)
+        ).setScale(
+            2, BigDecimal.ROUND_HALF_UP
+        ),
         zipCode: String = this.generateRandomString(Random.nextInt(1, 255)),
         street: String = this.generateRandomString(Random.nextInt(1, 255))
     ): CustomerUpdateDto = CustomerUpdateDto(
@@ -88,9 +96,13 @@ class FakeData {
 
 
     public fun buildCreditDto(
-        creditValue: BigDecimal = BigDecimal(Random.nextDouble()),
+        creditValue: BigDecimal = BigDecimal(
+            Random.nextDouble(100.0, 100000.0)
+        ).setScale(
+            2, BigDecimal.ROUND_HALF_UP
+        ),
         dayFirstOfInstallment: LocalDate = this.generateRandomDate(),
-        numberOfInstallments: Int = Random.nextInt(),
+        numberOfInstallments: Int = Random.nextInt(1, 49),
         customerId: Long = 1L
     ): CreditDto = CreditDto(
         creditValue = creditValue,
